@@ -20,7 +20,7 @@
        01  INTEGER-ARRAY.
            05  ARRAY-ELEM      OCCURS 10 TIMES PIC 9(3).
        77  ARRAY-INDEX         PIC 9 VALUE 1.
-       77  COUNTS              PIC 9 VALUE 0.
+       77  COUNTS              PIC 99 VALUE 0.
 
        01  WS-VAR.
            05 WS-EOF-SW        PIC X(1).
@@ -34,6 +34,7 @@
 
            PERFORM VARYING COUNTS FROM 1 BY 1 UNTIL COUNTS>10
                DISPLAY ARRAY-ELEM (COUNTS)
+               DISPLAY COUNTS
            END-PERFORM.
            STOP RUN.
        
@@ -46,7 +47,7 @@
                        IF FILE-INPUT IS NOT = WS-CR THEN
                            MOVE FILE-INPUT TO ARRAY-ELEM (ARRAY-INDEX)
                            ADD 1 TO ARRAY-INDEX GIVING ARRAY-INDEX
-                           DISPLAY FILE-INPUT
+      *                     DISPLAY FILE-INPUT
                        END-IF
                END-READ
            END-PERFORM.
